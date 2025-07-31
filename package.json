@@ -1,6 +1,6 @@
 {
   "name": "smh-rn-expo-json-ui-engine",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A JSON-driven UI engine for React Native and Expo that enables dynamic, runtime-rendered interfaces without rebuilding the app.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
