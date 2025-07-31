@@ -1,0 +1,223 @@
+{
+  "name": "smh-rn-expo-json-ui-engine",
+  "version": "0.0.1",
+  "description": "A JSON-driven UI engine for React Native and Expo that enables dynamic, runtime-rendered interfaces without rebuilding the app.",
+  "source": "./src/index.tsx",
+  "main": "./lib/commonjs/index.js",
+  "module": "./lib/module/index.js",
+  "types": "./lib/typescript/commonjs/src/index.d.ts",
+  "files": [
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "*.podspec",
+    "react-native.config.js",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
+  "scripts": {
+    "example": "yarn workspace smh-rn-expo-json-ui-engine-example",
+    "test": "jest",
+    "typecheck": "tsc",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "clean": "del-cli lib",
+    "prepare": "bob build && npm run postbuild",
+    "postbuild": "node minify.js",
+    "release": "release-it"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "json-ui",
+    "runtime-ui",
+    "dynamic-ui",
+    "no-code",
+    "low-code",
+    "mobile-ui-engine",
+    "json-renderer",
+    "react-native-json",
+    "ui-from-json",
+    "component-registry",
+    "observable-ui",
+    "typescript-ui",
+    "rxjs-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smuniharish/smh-rn-expo-json-ui-engine.git"
+  },
+  "contributors": [
+    "S MUNI HARISH"
+  ],
+  "author": "smuniharish <samamuniharish@gmail.com> (https://github.com/smuniharish)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/smuniharish/smh-rn-expo-json-ui-engine/issues"
+  },
+  "homepage": "https://github.com/smuniharish/smh-rn-expo-json-ui-engine#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "expo-blur": "^14.1.5",
+    "expo-camera": "16.1.11",
+    "expo-checkbox": "4.1.4",
+    "expo-gl": "15.1.7",
+    "expo-live-photo": "0.1.4",
+    "expo-linear-gradient": "14.1.5",
+    "expo-mesh-gradient": "0.3.4",
+    "expo-status-bar": "2.2.3",
+    "expo-video": "2.2.2",
+    "expo-image": "2.4.0",
+    "@shopify/flash-list": "^1.8.3",
+    "@react-native-community/slider": "4.5.7",
+    "@react-native-masked-view/masked-view": "0.3.2",
+    "@react-native-segmented-control/segmented-control": "2.5.7",
+    "@react-native-picker/picker": "2.11.1",
+    "react-native-modal-datetime-picker": "^18.0.0",
+    "react-native-safe-area-context": "5.5.2",
+    "lottie-react-native": "7.2.5",
+    "react-native-pager-view": "6.8.1",
+    "smh-rn-styles-cache": "0.0.6"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.8.1",
+    "@evilmartians/lefthook": "^1.12.2",
+    "@react-native/eslint-config": "^0.80.2",
+    "@release-it/conventional-changelog": "^10.0.1",
+    "@types/jest": "^30.0.0",
+    "@types/react": "^19.1.9",
+    "commitlint": "^19.8.1",
+    "del-cli": "^6.0.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "jest": "^30.0.5",
+    "prettier": "^3.6.2",
+    "react": "19.1.1",
+    "react-native": "0.80.2",
+    "react-native-builder-bob": "^0.40.13",
+    "release-it": "^19.0.4",
+    "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "expo": "53.0.20"
+  },
+  "workspaces": [
+    "example"
+  ],
+  "packageManager": "yarn@3.6.1",
+  "jest": {
+    "preset": "react-native",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/node_modules",
+      "<rootDir>/lib/"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@react-native",
+      "prettier"
+    ],
+    "rules": {
+      "react/react-in-jsx-scope": "off",
+      "prettier/prettier": [
+        "error",
+        {
+          "quoteProps": "consistent",
+          "singleQuote": true,
+          "tabWidth": 2,
+          "trailingComma": "es5",
+          "useTabs": false
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "codegen",
+      [
+        "commonjs",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  },
+  "codegenConfig": {
+    "name": "RNSmhRnExpoJsonUiEngine",
+    "type": "modules",
+    "jsSrcsDir": "lib",
+    "outputDir": {
+      "ios": "ios/generated",
+      "android": "android/generated"
+    },
+    "android": {
+      "javaPackageName": "com.smhrnexpojsonuiengine"
+    }
+  },
+  "create-react-native-library": {
+    "languages": "js",
+    "type": "library",
+    "version": "0.52.0"
+  }
+}
