@@ -1,21 +1,21 @@
-import type { FlashListProps } from "@shopify/flash-list";
-import type { BlurViewProps } from "expo-blur";
-import type { CameraViewProps } from "expo-camera";
-import type { CheckboxProps } from "expo-checkbox";
-import type { GLViewProps } from "expo-gl";
-import type { LivePhotoViewProps } from "expo-live-photo";
-import type { LinearGradientProps } from "expo-linear-gradient";
-import type { MeshGradientViewProps } from "expo-mesh-gradient";
-import type { StatusBarProps } from "expo-status-bar";
-import type { VideoViewProps } from "expo-video";
-import type { ReactNativeModalDateTimePickerProps } from "react-native-modal-datetime-picker";
-import type { SliderProps } from "@react-native-community/slider";
-import type { MaskedViewProps } from "@react-native-masked-view/masked-view";
-import type { SegmentedControlProps } from "@react-native-segmented-control/segmented-control";
-import type { PickerItemProps, PickerProps } from "@react-native-picker/picker";
-import type { LottieViewProps } from "lottie-react-native";
-import type { PagerViewProps } from "react-native-pager-view";
-import type { ImageBackgroundProps, ImageProps } from "expo-image";
+import type { FlashListProps } from '@shopify/flash-list';
+import type { BlurViewProps } from 'expo-blur';
+import type { CameraViewProps } from 'expo-camera';
+import type { CheckboxProps } from 'expo-checkbox';
+import type { GLViewProps } from 'expo-gl';
+import type { LivePhotoViewProps } from 'expo-live-photo';
+import type { LinearGradientProps } from 'expo-linear-gradient';
+import type { MeshGradientViewProps } from 'expo-mesh-gradient';
+import type { StatusBarProps } from 'expo-status-bar';
+import type { VideoViewProps } from 'expo-video';
+import type { ReactNativeModalDateTimePickerProps } from 'react-native-modal-datetime-picker';
+import type { SliderProps } from '@react-native-community/slider';
+import type { MaskedViewProps } from '@react-native-masked-view/masked-view';
+import type { SegmentedControlProps } from '@react-native-segmented-control/segmented-control';
+import type { PickerItemProps, PickerProps } from '@react-native-picker/picker';
+import type { LottieViewProps } from 'lottie-react-native';
+import type { PagerViewProps } from 'react-native-pager-view';
+import type { ImageBackgroundProps, ImageProps } from 'expo-image';
 import type {
   TextInputProps,
   TextProps,
@@ -28,52 +28,53 @@ import type {
   KeyboardAvoidingViewProps,
   SectionListProps,
   SectionListData,
-} from "react-native";
+} from 'react-native';
+import type { SafeAreaViewProps } from 'react-native-safe-area-context';
 // main types
 enum CustomTypes {
-  useComponent = "useComponent"
+  useComponent = 'useComponent',
 }
 enum ContainerTypes {
-  ViewContainer = "ViewContainer",
-  ListContainer = "ListContainer",
-  ViewListContainer = "ViewListContainer",
+  ViewContainer = 'ViewContainer',
+  ListContainer = 'ListContainer',
+  ViewListContainer = 'ViewListContainer',
 }
 enum LeafTypes {
-  Button = "Button",
-  TextInput = "TextInput",
-  Text = "Text",
-  Image = "Image",
-  ImageBackground = "ImageBackground",
-  SectionList = "SectionList",
-  Checkbox = "Checkbox",
-  LinearGradient = "LinearGradient",
-  GLView = "GLView",
-  LivePhotoView = "LivePhotoView",
-  MeshGradientView = "MeshGradientView",
-  StatusBar = "StatusBar",
-  VideoView = "VideoView",
-  DateTimePicker = "DateTimePicker",
-  Slider = "Slider",
-  MaskedView = "MaskedView",
-  SegmentedControl = "SegmentedControl",
-  Picker = "Picker",
-  LottieView = "LottieView",
+  Button = 'Button',
+  TextInput = 'TextInput',
+  Text = 'Text',
+  Image = 'Image',
+  ImageBackground = 'ImageBackground',
+  SectionList = 'SectionList',
+  Checkbox = 'Checkbox',
+  LinearGradient = 'LinearGradient',
+  GLView = 'GLView',
+  LivePhotoView = 'LivePhotoView',
+  MeshGradientView = 'MeshGradientView',
+  StatusBar = 'StatusBar',
+  VideoView = 'VideoView',
+  DateTimePicker = 'DateTimePicker',
+  Slider = 'Slider',
+  MaskedView = 'MaskedView',
+  SegmentedControl = 'SegmentedControl',
+  Picker = 'Picker',
+  LottieView = 'LottieView',
 }
 
 export { ContainerTypes, LeafTypes };
 
 // SubTypes
 enum ViewWrapperTypes {
-  View = "View",
-  SafeAreaView = "SafeAreaView",
-  KeyboardAvoidingView = "KeyboardAvoidingView",
-  Pressable = "Pressable",
-  TouchableHighlight = "TouchableHighlight",
-  TouchableOpacity = "TouchableOpacity",
-  TouchableWithoutFeedback = "TouchableWithoutFeedback",
-  BlurView = "BlurView",
-  CameraView = "CameraView",
-  PagerView = "PagerView",
+  View = 'View',
+  SafeAreaView = 'SafeAreaView',
+  KeyboardAvoidingView = 'KeyboardAvoidingView',
+  Pressable = 'Pressable',
+  TouchableHighlight = 'TouchableHighlight',
+  TouchableOpacity = 'TouchableOpacity',
+  TouchableWithoutFeedback = 'TouchableWithoutFeedback',
+  BlurView = 'BlurView',
+  CameraView = 'CameraView',
+  PagerView = 'PagerView',
 }
 
 export { ViewWrapperTypes };
@@ -136,15 +137,15 @@ interface TextInputComponent extends BaseUIComponent {
 
 type UISectionListProps = Omit<
   SectionListProps<UIComponent, SectionListData<UIComponent>>,
-  | "renderItem"
-  | "renderSectionHeader"
-  | "ListHeaderComponent"
-  | "ListFooterComponent"
-  | "ListEmptyComponent"
-  | "ItemSeparatorComponent"
-  | "SectionSeparatorComponent"
-  | "CellRendererComponent"
-  | "stickySectionHeadersEnabled"
+  | 'renderItem'
+  | 'renderSectionHeader'
+  | 'ListHeaderComponent'
+  | 'ListFooterComponent'
+  | 'ListEmptyComponent'
+  | 'ItemSeparatorComponent'
+  | 'SectionSeparatorComponent'
+  | 'CellRendererComponent'
+  | 'stickySectionHeadersEnabled'
 >;
 interface SectionListComponent extends BaseUIComponent {
   type: LeafTypes.SectionList;
@@ -190,7 +191,7 @@ interface SliderComponent extends BaseUIComponent {
 }
 interface MaskedViewComponent extends BaseUIComponent {
   type: LeafTypes.MaskedView;
-  props: Omit<MaskedViewProps, "maskElement">;
+  props: Omit<MaskedViewProps, 'maskElement'>;
   maskElement: ViewContainerComponent | ViewListContainerComponent;
   children: UIComponent[];
 }
@@ -210,7 +211,7 @@ interface LottieViewComponent extends BaseUIComponent {
 
 type WrapperComponentPropsMap = {
   [ViewWrapperTypes.View]: ViewProps;
-  [ViewWrapperTypes.SafeAreaView]: ViewProps;
+  [ViewWrapperTypes.SafeAreaView]: SafeAreaViewProps;
   [ViewWrapperTypes.KeyboardAvoidingView]: KeyboardAvoidingViewProps;
   [ViewWrapperTypes.Pressable]: PressableProps;
   [ViewWrapperTypes.TouchableHighlight]: TouchableHighlightProps;
@@ -238,16 +239,15 @@ type ViewContainerWrapperComponent =
   | BaseWrapperComponent<ViewWrapperTypes.CameraView>
   | BaseWrapperComponent<ViewWrapperTypes.PagerView>;
 
-
 type UIFlashListProps = Omit<
   FlashListProps<UIComponent>,
-  | "renderItem"
-  | "ListHeaderComponent"
-  | "ListFooterComponent"
-  | "ListEmptyComponent"
-  | "ItemSeperatorComponent"
-  | "CellRendererComponent"
-  | "StickyHeaderComponent"
+  | 'renderItem'
+  | 'ListHeaderComponent'
+  | 'ListFooterComponent'
+  | 'ListEmptyComponent'
+  | 'ItemSeperatorComponent'
+  | 'CellRendererComponent'
+  | 'StickyHeaderComponent'
 >;
 
 type ViewContainerComponent = ViewContainerWrapperComponent & {
@@ -285,13 +285,16 @@ export type {
   ViewListContainerComponent,
 };
 
-interface UseComponent<TRef extends string = string,TProps extends object = Record<string,any>>{
-  type:CustomTypes.useComponent;
-  ref:TRef;
-  props?:TProps
-  properties?:UIComponent[]
+interface UseComponent<
+  TRef extends string = string,
+  TProps extends object = Record<string, any>,
+> {
+  type: CustomTypes.useComponent;
+  ref: TRef;
+  props?: TProps;
+  properties?: UIComponent[];
 }
-export type {UseComponent}
+export type { UseComponent };
 
 type UIComponent =
   | ButtonComponent
@@ -316,7 +319,7 @@ type UIComponent =
   | ViewContainerComponent
   | ListContainerComponent
   | ViewListContainerComponent
-  | UseComponent
+  | UseComponent;
 
 export type { UIComponent };
 
@@ -324,7 +327,7 @@ const JSONUIEnums = {
   ContainerTypes,
   LeafTypes,
   ViewWrapperTypes,
-  CustomTypes
+  CustomTypes,
 };
 
 export { JSONUIEnums };

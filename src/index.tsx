@@ -1,7 +1,8 @@
-import { Fragment, useEffect, useState } from "react";
-import renderUIComponent from "./render";
-import type { UIComponent } from "./types";
-import {JSONUIEnums} from "./types"
+import { Fragment, useEffect, useState } from 'react';
+import { useMappingHelper } from '@shopify/flash-list';
+import renderUIComponent from './render';
+import type { UIComponent } from './types';
+import { JSONUIEnums } from './types';
 
 type JSONSource =
   | UIComponent
@@ -13,19 +14,20 @@ interface JSONUIProps {
   jsonSource?: JSONSource;
 }
 const isObservable = (
-  obj: any,
+  obj: any
 ): obj is {
   subscribe: (cb: (val: any) => void) => { unsubscribe: () => void };
 } => {
-  return !!obj && typeof obj.subscribe === "function";
+  return !!obj && typeof obj.subscribe === 'function';
 };
 const JSONUI = ({ json, jsonSource }: JSONUIProps) => {
   const [resolvedJson, setResolvedJson] = useState<UIComponent | UIComponent[]>(
-    json || [],
+    json || []
   );
+  const {getMappingKey} = useMappingHelper()
 
   useEffect(() => {
-    if (typeof jsonSource === "function") {
+    if (typeof jsonSource === 'function') {
       const val = jsonSource();
       setResolvedJson(val);
     } else if (isObservable(jsonSource)) {
@@ -36,11 +38,11 @@ const JSONUI = ({ json, jsonSource }: JSONUIProps) => {
     } else if (json) {
       setResolvedJson(json);
     }
-    return ()=>{};
+    return () => {};
   }, [jsonSource, json]);
   const renderTree = Array.isArray(resolvedJson)
     ? resolvedJson.map((c, idx) => (
-        <Fragment key={idx}>{renderUIComponent(c)}</Fragment>
+        <Fragment key={getMappingKey(JSON.stringify(c),idx)}>{renderUIComponent(c)}</Fragment>
       ))
     : renderUIComponent(resolvedJson);
 
@@ -48,3 +50,4 @@ const JSONUI = ({ json, jsonSource }: JSONUIProps) => {
 };
 
 export { JSONUI, JSONUIEnums };
+export type { UIComponent };

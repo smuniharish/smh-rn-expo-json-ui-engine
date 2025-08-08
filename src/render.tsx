@@ -14,6 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Image, ImageBackground } from "expo-image";
 import { Fragment, useMemo } from "react";
 import { FlashList } from "@shopify/flash-list";
+import { useMappingHelper } from "@shopify/flash-list";
 import { getCachedStyle } from "smh-rn-styles-cache";
 import MaskedView from "@react-native-masked-view/masked-view";
 import Checkbox from "expo-checkbox";
@@ -134,6 +135,7 @@ const renderSectionList = (props: any, components: any) => {
 };
 
 const renderUIComponent = (item: any) => {
+  const {getMappingKey} = useMappingHelper()
   const { ContainerTypes, LeafTypes, ViewWrapperTypes,CustomTypes } = JSONUIEnums;
   const {
     // Common
@@ -182,8 +184,8 @@ const renderUIComponent = (item: any) => {
       return (
         <LinearGradient {...props} style={cacheSingleStyle(props?.style)}>
           {(item.children || []).map(
-            (child: UIComponent, idx: string | number) => (
-              <Fragment key={idx}>{renderUIComponent(child)}</Fragment>
+            (child: UIComponent, idx: number) => (
+              <Fragment key={getMappingKey(JSON.stringify(child),idx)}>{renderUIComponent(child)}</Fragment>
             ),
           )}
         </LinearGradient>
@@ -216,8 +218,8 @@ const renderUIComponent = (item: any) => {
       return (
         <MaskedView maskElement={maskElement}>
           {(item.children || []).map(
-            (child: UIComponent, idx: string | number) => (
-              <Fragment key={idx}>{renderUIComponent(child)}</Fragment>
+            (child: UIComponent, idx: number) => (
+              <Fragment key={getMappingKey(JSON.stringify(child),idx)}>{renderUIComponent(child)}</Fragment>
             ),
           )}
         </MaskedView>
@@ -240,7 +242,7 @@ const renderUIComponent = (item: any) => {
           style={cacheSingleStyle(props?.style)}
           itemStyle={cacheSingleStyle(props?.itemStyle)}
         >
-          {item.items.map((child: PickerItemProps, idx: string | number) => (
+          {item.items.map((child: PickerItemProps, idx: number) => (
             <Picker.Item {...child} key={idx} />
           ))}
         </Picker>
@@ -251,8 +253,8 @@ const renderUIComponent = (item: any) => {
     case ContainerTypes.ViewContainer:
       return (
         <View {...props} style={cacheSingleStyle(props?.style)}>
-          {item.properties.map((item: UIComponent, i: any) => (
-            <Fragment key={i}>{renderUIComponent(item)}</Fragment>
+          {item.properties.map((item: UIComponent, idx: number) => (
+            <Fragment key={getMappingKey(JSON.stringify(item),idx)}>{renderUIComponent(item)}</Fragment>
           ))}
         </View>
       );
