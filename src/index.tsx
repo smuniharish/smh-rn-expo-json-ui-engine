@@ -3,6 +3,7 @@ import { useMappingHelper } from '@shopify/flash-list';
 import renderUIComponent from './render';
 import type { UIComponent } from './types';
 import { JSONUIEnums } from './types';
+import { MappingHelpersProvider } from './context';
 
 type JSONSource =
   | UIComponent
@@ -46,7 +47,7 @@ const JSONUI = ({ json, jsonSource }: JSONUIProps) => {
       ))
     : renderUIComponent(resolvedJson);
 
-  return <>{renderTree}</>;
+  return <MappingHelpersProvider>{renderTree}</MappingHelpersProvider>;
 };
 
 export { JSONUI, JSONUIEnums };

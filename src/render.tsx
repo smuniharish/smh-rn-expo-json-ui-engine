@@ -14,7 +14,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Image, ImageBackground } from "expo-image";
 import { Fragment, useMemo } from "react";
 import { FlashList } from "@shopify/flash-list";
-import { useMappingHelper } from "@shopify/flash-list";
 import { getCachedStyle } from "smh-rn-styles-cache";
 import MaskedView from "@react-native-masked-view/masked-view";
 import Checkbox from "expo-checkbox";
@@ -36,6 +35,7 @@ import { Picker } from "@react-native-picker/picker";
 import type {PickerItemProps} from "@react-native-picker/picker"
 import { JSONUIEnums } from "./types";
 import type {UIComponent, UseComponent} from "./types"
+import { useMappingHelpers } from "./context/mappingHelpers";
 
 const UseComponentWrapper = ({ ref, props,properties }: UseComponent) => {
   const entry = getComponentEntry(ref);
@@ -135,7 +135,7 @@ const renderSectionList = (props: any, components: any) => {
 };
 
 const renderUIComponent = (item: any) => {
-  const {getMappingKey} = useMappingHelper()
+  const {getMappingKey} = useMappingHelpers()
   const { ContainerTypes, LeafTypes, ViewWrapperTypes,CustomTypes } = JSONUIEnums;
   const {
     // Common
