@@ -35,7 +35,6 @@ import { Picker } from "@react-native-picker/picker";
 import type {PickerItemProps} from "@react-native-picker/picker"
 import { JSONUIEnums } from "./types";
 import type {UIComponent, UseComponent} from "./types"
-import { useMappingHelpers } from "./context/mappingHelpers";
 
 const UseComponentWrapper = ({ ref, props,properties }: UseComponent) => {
   const entry = getComponentEntry(ref);
@@ -135,7 +134,6 @@ const renderSectionList = (props: any, components: any) => {
 };
 
 const renderUIComponent = (item: any) => {
-  const {getMappingKey} = useMappingHelpers()
   const { ContainerTypes, LeafTypes, ViewWrapperTypes,CustomTypes } = JSONUIEnums;
   const {
     // Common
@@ -185,7 +183,7 @@ const renderUIComponent = (item: any) => {
         <LinearGradient {...props} style={cacheSingleStyle(props?.style)}>
           {(item.children || []).map(
             (child: UIComponent, idx: number) => (
-              <Fragment key={getMappingKey(JSON.stringify(child),idx)}>{renderUIComponent(child)}</Fragment>
+              <Fragment key={idx}>{renderUIComponent(child)}</Fragment>
             ),
           )}
         </LinearGradient>
@@ -219,7 +217,7 @@ const renderUIComponent = (item: any) => {
         <MaskedView maskElement={maskElement}>
           {(item.children || []).map(
             (child: UIComponent, idx: number) => (
-              <Fragment key={getMappingKey(JSON.stringify(child),idx)}>{renderUIComponent(child)}</Fragment>
+              <Fragment key={idx}>{renderUIComponent(child)}</Fragment>
             ),
           )}
         </MaskedView>
@@ -254,7 +252,7 @@ const renderUIComponent = (item: any) => {
       return (
         <View {...props} style={cacheSingleStyle(props?.style)}>
           {item.properties.map((item: UIComponent, idx: number) => (
-            <Fragment key={getMappingKey(JSON.stringify(item),idx)}>{renderUIComponent(item)}</Fragment>
+            <Fragment key={idx}>{renderUIComponent(item)}</Fragment>
           ))}
         </View>
       );

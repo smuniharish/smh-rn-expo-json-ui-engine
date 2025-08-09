@@ -1,9 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
-import { useMappingHelper } from '@shopify/flash-list';
 import renderUIComponent from './render';
 import type { UIComponent } from './types';
 import { JSONUIEnums } from './types';
-import { MappingHelpersProvider } from './context';
 
 type JSONSource =
   | UIComponent
@@ -25,7 +23,6 @@ const JSONUI = ({ json, jsonSource }: JSONUIProps) => {
   const [resolvedJson, setResolvedJson] = useState<UIComponent | UIComponent[]>(
     json || []
   );
-  const {getMappingKey} = useMappingHelper()
 
   useEffect(() => {
     if (typeof jsonSource === 'function') {
@@ -43,11 +40,11 @@ const JSONUI = ({ json, jsonSource }: JSONUIProps) => {
   }, [jsonSource, json]);
   const renderTree = Array.isArray(resolvedJson)
     ? resolvedJson.map((c, idx) => (
-        <Fragment key={getMappingKey(JSON.stringify(c),idx)}>{renderUIComponent(c)}</Fragment>
+        <Fragment key={idx}>{renderUIComponent(c)}</Fragment>
       ))
     : renderUIComponent(resolvedJson);
 
-  return <MappingHelpersProvider>{renderTree}</MappingHelpersProvider>;
+  return <>{renderTree}</>;
 };
 
 export { JSONUI, JSONUIEnums };
