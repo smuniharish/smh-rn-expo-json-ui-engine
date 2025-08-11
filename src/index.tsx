@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import renderUIComponent from './render';
 import type { UIComponent } from './types';
 import { JSONUIEnums } from './types';
@@ -20,24 +20,31 @@ const isObservable = (
   return !!obj && typeof obj.subscribe === 'function';
 };
 const JSONUI = ({ json, jsonSource }: JSONUIProps) => {
-  const [resolvedJson, setResolvedJson] = useState<UIComponent | UIComponent[]>(
+  const [observableValue, setObservableValue] = useState<UIComponent | UIComponent[]>(
     json || []
   );
 
-  useEffect(() => {
-    if (typeof jsonSource === 'function') {
-      const val = jsonSource();
-      setResolvedJson(val);
-    } else if (isObservable(jsonSource)) {
-      const sub = jsonSource.subscribe(setResolvedJson);
-      return () => sub.unsubscribe();
-    } else if (jsonSource) {
-      setResolvedJson(jsonSource);
-    } else if (json) {
-      setResolvedJson(json);
+  useEffect(()=>{
+    if(isObservable(jsonSource)){
+      const sub = jsonSource.subscribe(setObservableValue);
+      return () => sub.unsubscribe()
     }
-    return () => {};
-  }, [jsonSource, json]);
+    return ()=>{}
+  },[jsonSource])
+
+  const resolvedJson = useMemo(()=>{
+    if(isObservable(jsonSource)){
+      return observableValue ?? [];
+    }
+    if(typeof jsonSource === "function"){
+      return jsonSource();
+    }
+    if(jsonSource){
+      return jsonSource
+    }
+    return json ?? []
+  },[json,jsonSource,observableValue])
+
   const renderTree = Array.isArray(resolvedJson)
     ? resolvedJson.map((c, idx) => (
         <Fragment key={idx}>{renderUIComponent(c)}</Fragment>
